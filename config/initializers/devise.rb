@@ -26,6 +26,8 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'tepen@project_tu.com'
 
+  config.authentication_keys = [ :login ]
+
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
