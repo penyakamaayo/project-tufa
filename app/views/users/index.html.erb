@@ -4,10 +4,13 @@
       <h2>Admin Dashboard</h2> <br />
       <div class="users-index">
         <h4>Users:</h4>
-        <%= render 'users/index' %>
+        <div><%= link_to "CREATE NEW USER", new_user_path() %></div>
+        <%= render 'index' %>
       </div>
       <% else %>
-      This is only visible to User. <br /><br />  
+      <h2>User Dashboard</h2> <br />
+      <% @user = current_user %>
+      <%= render 'show'%>
     <%end%>
   </div>
 </div>

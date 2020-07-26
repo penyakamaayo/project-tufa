@@ -2,6 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
+  geocoded_by :ip_address,
+  :latitude => :lat, :longitude => :lon
+  after_validation :geocode
+
   # dili case sensitive ang username
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   # para dili maka fill up ug email sa 'Username' na field

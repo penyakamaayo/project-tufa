@@ -6,7 +6,11 @@ ruby '2.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 
-gem 'rails_admin', '~> 2.0', '>= 2.0.2'
+# gem 'cancancan', '~> 3.1'
+
+gem 'geocoder', '~> 1.6', '>= 1.6.3'
+
+# gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
 
 gem 'pg'
 
