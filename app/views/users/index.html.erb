@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="col-md-12">
+    <%if current_user.admin?%>
+      <h2>Admin Dashboard</h2> <br />
+      <div class="users-index">
+        <h4>Users:</h4>
+        <div><%= link_to "CREATE NEW USER", new_user_path() %></div>
+        <%= render 'index' %>
+      </div>
+      <% else %>
+      <h2>User Dashboard</h2> <br />
+      <% @user = current_user %>
+      <%= render 'show'%>
+    <%end%>
+  </div>
+</div>

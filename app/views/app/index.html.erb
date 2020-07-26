@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="col-md-12">
+    <%if current_user.admin?%>
+      <h2>Admin Dashboard</h2> <br />
+      <div class="users-index">
+        <h4>Users:</h4>
+        <%= render 'users/index' %>
+      </div>
+      <% else %>
+      This is only visible to User. <br /><br />  
+    <%end%>
+  </div>
+</div>
