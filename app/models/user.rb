@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # para dili maka fill up ug email sa 'Username' na field
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, 
          authentication_keys: [:login]
 
