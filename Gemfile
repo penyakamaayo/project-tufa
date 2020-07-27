@@ -10,6 +10,11 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 
 gem 'geocoder', '~> 1.6', '>= 1.6.3'
 
+gem 'awesome_print'
+
+gem 'devise-two-factor'
+
+gem 'rqrcode'
 # gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
 
 gem 'pg'

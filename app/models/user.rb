@@ -6,10 +6,10 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   # para dili maka fill up ug email sa 'Username' na field
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-
-  devise :database_authenticatable, :registerable, :trackable,
-         :recoverable, :rememberable, :validatable, 
-         authentication_keys: [:login]
+  # :database_authenticatable,
+  devise :registerable, :trackable,
+         :recoverable, :rememberable, :validatable, :two_factor_authenticatable,
+         authentication_keys: [:login], :otp_secret_encryption_key => ENV['test_key']
 
   attr_writer :login
   def login

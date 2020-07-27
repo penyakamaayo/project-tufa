@@ -1,4 +1,20 @@
 class UsersController < ApplicationController
+
+  def enable_otp user_id=params[:user_id] || current_user.id
+    user=User.find user_id
+    user.otp_secret = User.generate_otp_secret
+    user.otp_required_for_login = true
+    user.save!
+    redirect_to users_path
+  end 
+  
+  def disable_otp user_id=params[:user_id] || current_user.id
+    user = User.find user_id
+    user.otp_required_for_login = false
+    user.save!
+    redirect_to users_path
+  end
+
   def index
     @users = User.all
     if Rails.env.production?
