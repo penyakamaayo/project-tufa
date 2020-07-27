@@ -1,1 +1,1 @@
-web: $test_key=ef4ca7ff5510a78b8193198dfb6d7bd35d1728794d3700ca5a3fe229d78417be4d7687ca34382f75b5fbc39e2e5d1e9c589d326bdb7149e68b2e78afc82c6d2c bundle exec bin/rails server -p $PORT
+web: bundle exec bin/rails server -p $PORT
