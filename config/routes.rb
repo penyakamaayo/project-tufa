@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   post 'users/enable_otp'
+  post 'users/allow_tfa'
+  
   post 'users/disable_otp'
+  post 'users/deny_tfa'
   root to: "users#index"
   # get '/user/dashboard' => "app#index", :as => :user_root
   

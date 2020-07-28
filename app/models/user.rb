@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  devise :two_factor_authenticatable,
-         :otp_secret_encryption_key => ENV['test_key']
-
+  devise :registerable, :trackable,
+        :recoverable, :rememberable, :validatable, :two_factor_authenticatable,
+        authentication_keys: [:login], :otp_secret_encryption_key => ENV['test_key']
+  after_create :skip_conf!
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
@@ -10,9 +11,18 @@ class User < ApplicationRecord
   # para dili maka fill up ug email sa 'Username' na field
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   # :database_authenticatable,
-  devise :registerable, :trackable,
-         :recoverable, :rememberable, :validatable, :two_factor_authenticatable,
-         authentication_keys: [:login], :otp_secret_encryption_key => ENV['test_key']
+
+
+  def skip_conf!
+    self.confirm! if Rails.env.development?
+  end
+
+  def after_database_authentication
+    Rails.logger.info('im here!')
+    Rails.logger.info('im here!')
+    Rails.logger.info('im here!')
+  end
+
 
   attr_writer :login
   def login

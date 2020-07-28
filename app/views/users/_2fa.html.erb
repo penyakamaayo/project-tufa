@@ -4,12 +4,12 @@
 <% end %>
 
 <% if user %>
-  <% if !user.otp_required_for_login %>
-    <%= button_to "Enable 2FA", users_enable_otp_path(user_id: user.id), :method => :post %>
+  <% if !user.admin_allow_tfa %>
+    <%= button_to "Enable 2FA for this User", users_allow_tfa_path(user_id: user.id), :method => :post %>
   <% end %>
 
-  <% if user.otp_required_for_login %>
-    <%= button_to "Disable 2FA", users_disable_otp_path(user_id: user.id), :method => :post %>
+  <% if user.admin_allow_tfa %>
+    <%= button_to "Disable 2FA", users_deny_tfa_path(user_id: user.id), :method => :post %>
     <div class="container" style="width: 194pt;">
 
       <%

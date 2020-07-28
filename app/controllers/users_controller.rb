@@ -15,6 +15,21 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def allow_tfa user_id=params[:user_id] || current_user.id
+    user = User.find user_id
+    user.admin_allow_tfa = true
+    user.save!
+    redirect_to users_path
+  end
+
+  def deny_tfa user_id=params[:user_id] || current_user.id
+    user = User.find user_id
+    user.admin_allow_tfa = false
+    user.save!
+    redirect_to users_path
+  end
+
+
   def index
     @users = User.all
     if Rails.env.production?
