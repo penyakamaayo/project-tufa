@@ -8,11 +8,13 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 
 # gem 'cancancan', '~> 3.1'
 
+gem 'active_model_otp'
+
 gem 'geocoder', '~> 1.6', '>= 1.6.3'
 
 gem 'awesome_print'
 
-gem 'devise-two-factor'
+# gem 'devise-two-factor'
 
 gem 'rqrcode'
 # gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
@@ -53,6 +55,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'annotate'
 end
 
 group :test do

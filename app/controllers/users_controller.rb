@@ -1,33 +1,47 @@
 class UsersController < ApplicationController
+  # before_action :check_for_tfa
 
-  def enable_otp user_id=params[:user_id] || current_user.id
+  def verify_enabled user_id=params[:user_id] || current_user.id
     user=User.find user_id
-    user.otp_secret = User.generate_otp_secret
-    user.otp_required_for_login = true
+    user.otp_module_enabled!
+    user.save!
+    redirect_to users_path
+  end
+
+  def verify_disabled user_id=params[:user_id] || current_user.id
+    user=User.find user_id
+    user.otp_module_disabled!
     user.save!
     redirect_to users_path
   end 
   
-  def disable_otp user_id=params[:user_id] || current_user.id
-    user = User.find user_id
-    user.otp_required_for_login = false
-    user.save!
-    redirect_to users_path
-  end
+  # def disable_otp user_id=params[:user_id] || current_user.id
+  #   user = User.find user_id
+  #   user.otp_required_for_login = false
+  #   user.save!
+  #   redirect_to users_path
+  # end
 
-  def allow_tfa user_id=params[:user_id] || current_user.id
-    user = User.find user_id
-    user.admin_allow_tfa = true
-    user.save!
-    redirect_to users_path
-  end
+  # def allow_tfa user_id=params[:user_id] || current_user.id
+  #   user = User.find user_id
+  #   user.admin_allow_tfa = true
+  #   user.save!
+  #   redirect_to users_path
+  # end
 
-  def deny_tfa user_id=params[:user_id] || current_user.id
-    user = User.find user_id
-    user.admin_allow_tfa = false
-    user.save!
-    redirect_to users_path
-  end
+  # def deny_tfa user_id=params[:user_id] || current_user.id
+  #   user = User.find user_id
+  #   user.admin_allow_tfa = false
+  #   user.save!
+  #   redirect_to users_path
+  # end
+
+
+  # def check_for_tfa
+  #   if ! session[:otp_code]
+  #     redirect_to two_factors_new_path
+  #   end
+  # end
 
 
   def index

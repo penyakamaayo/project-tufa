@@ -27,7 +27,19 @@
     <%= link_to "edit user", edit_user_path(id: user.id) %> 
     |
     <%= link_to "delete user", user_path(id: user.id), method: :delete,
-      data: { confirm: "Are you sure you want to delete user: #{user.username} ?"  } %> <br /><br />
+      data: { confirm: "Are you sure you want to delete user: #{user.username} ?"  } %>
+      
+    <% if user %>
+      <% if user.otp_module_enabled? %>
+        <%= button_to "Disable 2FA", users_verify_disabled_path(user_id: user.id), :method => :post %><br />
+      <% end %>
+
+      <% if user.otp_module_disabled? %>
+        <%= button_to "Enable 2FA", users_verify_enabled_path(user_id: user.id), :method => :post %><br />
+      <% end %>
+
+    <% end %>
+    <%# <%= link_to "#{user.otp_module_enabled? ? 'disable' : 'enable'} two factor authentication", users/ %> 
   </div>
   <div>
   </div>
