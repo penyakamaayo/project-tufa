@@ -11,10 +11,14 @@ class ApplicationController < ActionController::Base
     if controller.controller_name == "sessions" && controller.action_name=="destroy"
       
     elsif controller.controller_name == "sessions" && controller.action_name=="new"
-      
+
     elsif controller.controller_name == "sessions" && controller.action_name=="create"
       
-    elsif controller.controller_name == "public" 
+    elsif controller.controller_name == "registrations" && controller.action_name=="new"
+      
+    elsif controller.controller_name == "registrations" && controller.action_name=="create"
+
+    elsif controller.controller_name == "public"
       
     elsif controller.controller_name == "two_factors" # ! :devise_controller?
     else

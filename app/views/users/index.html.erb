@@ -4,7 +4,9 @@
       <h2>Admin Dashboard</h2> <br />
       <div class="users-index">
         <h4>Users:</h4>
-        <div><%= link_to "CREATE NEW USER", new_user_path() %></div>
+        <div>
+        <%# <%= link_to "CREATE NEW USER", new_user_path() %>
+        </div>
         <%= render 'index' %>
       </div>
       <% else %>

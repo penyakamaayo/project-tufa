@@ -87,6 +87,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    session[:otp_code] = '1234'
     @user = User.new(user_params)
 
     if params[:user][:password].blank?
