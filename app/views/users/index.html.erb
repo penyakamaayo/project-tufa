@@ -10,8 +10,11 @@
         </div>
       </div>
       <% else %>
-      <bebas><h2>User Dashboard</h2></bebas>
+      <div>
+        <bebas><h2>User Dashboard</h2></bebas>
+      </div>
       <% @user = current_user %>
+      <%= button_to "View Login History", logins_path(user_id: @user.id), :method => :get %> <br />
       <%= render 'show'%>
     <%end%>
   </div>

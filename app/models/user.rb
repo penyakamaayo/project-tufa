@@ -11,20 +11,17 @@ class User < ApplicationRecord
          
   define_model_callbacks :create
   # attr_accessor :otp_secret_key, :email
+
+  has_many :logins, dependent: :destroy
        
   has_one_time_password
   enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true
   attr_accessor :otp_code_token
 
-  # after_create :skip_conf!
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
   # dili case sensitive ang username
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   # para dili maka fill up ug email sa 'Username' na field
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-  # :database_authenticatable,
 
   attr_writer :login
   def login

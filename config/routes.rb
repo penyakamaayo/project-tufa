@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, controllers: { sessions: "users/sessions" }
 
+  resources :logins
+
   resources :users do
     member do
       post :enable_multi_factor_authentication, to: 'users/multi_factor_authentication/multi_factor_authentication#verify_enable'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'two_factors/new', as: "two_factors_new"
   post 'two_factors/create', as: "two_factors_create"
+
+  get '/logins', to: "logins#index"
 
 
   # resources :users

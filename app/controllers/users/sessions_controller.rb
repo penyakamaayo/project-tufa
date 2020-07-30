@@ -39,7 +39,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def create
     self.resource = warden.authenticate!(auth_options)
-
     if resource && resource.admin_allow_tfa?
       continue_to_otp(resource, resource_name)
     elsif #resource && resource.admin_allow_tfa?
@@ -51,6 +50,7 @@ class Users::SessionsController < Devise::SessionsController
     def continue_sign_in(resource, resource_name)
       set_flash_message!(:notice, :signed_in)
       sign_in(resource_name, resource)
+      resource.logins.create!(ip_address: request.remote_ip, user_agent: request.user_agent, last_sign_in: resource.current_sign_in_at, username: resource.username, email: resource.email)
       yield resource if block_given?
       respond_with resource, location: after_sign_in_path_for(resource)
     end

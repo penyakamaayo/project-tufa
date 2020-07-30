@@ -42,7 +42,10 @@ class UsersController < ApplicationController
   #     redirect_to two_factors_new_path
   #   end
   # end
-
+  def logins
+    @user = User.find(params[:user_id])
+    @login = @user.logins.find(params[:id])
+  end
 
   def index
     @users = User.all
