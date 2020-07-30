@@ -1,26 +1,31 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+      <div class="col-md-4 border-top border-bottom border-left border-right pt-5 pb-5 pl-5 pr-5 text-left", id="rcorners2">
+        <div class="pb-4"><h4>hello!</h4></div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field pb-4">
+            <%= f.text_field :login, autofocus: true, placeholder:"Username or Email", id:"login", autocomplete: "login" %>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login, autofocus: true, autocomplete: "login" %>
+          <div class="field pb-3">
+            <%= f.password_field :password, placeholder:"Password", id:"login", autocomplete: "current-password" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field pb-3">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "Log in", class:'btn btn-primary btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    <div class="col-md-4"></div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+<%# <%= render "devise/shared/links" %>

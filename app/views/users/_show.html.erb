@@ -1,28 +1,43 @@
-  <div> 
-    <%# <%= render '2fauser' %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Current IP</th>
+          <th scope="col">Last IP</th>
+          <th scope="col">Admin</th>
+          <th scope="col">User Agent</th>
+          <th scope="col">Coordinates</th>
+          <th scope="col">Country</th>
+          <th scope="col">City</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%= @user.username%></th>
+          <td><%= @user.email %></td>
+          <td><%= @user.current_sign_in_ip %></td>
+          <td><%= @user.last_sign_in_ip %></td>
+          <td><% if @user.admin? %>
+                Yes 
+              <% elsif %>
+                No 
+              <%end%>
+          </td>
+          <td><%= request.user_agent %></td>
+          <td><%= @coordinates %></td>
+          <td><%= @country %></td>
+          <td><%= @city %></td>
+          <td>
+            <div>
+            <%= link_to "EDIT", edit_user_path(id: @user.id) %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-<div>user: <%= @user.username%></div>
-<div>email: <%= @user.email %></div>
-<div>current signin ip: <%= @user.current_sign_in_ip %></div>
-<div>last signin ip: <%= @user.last_sign_in_ip %></div>
-  <div>Admin? 
-  <% if @user.admin? %>
-    Yes
-  <% elsif %>
-    No
-  <%end%>
-</div>
-<div>User agent: <%= request.user_agent %></div>
-    
-  <div>
-    User country: <%= @country %><br />
-    User city: <%= @city %><br />
-    User coordinates: <%= @coordinates %><br />
-  </div>
-
-<div>
-  <%= link_to "edit user", edit_user_path(id: @user.id) %> 
-  |
-  <%= link_to "delete user", user_path(id: @user.id), method: :delete,
-    data: { confirm: "Are you sure you want to delete user: #{@user.username} ?"  } %> <br /><br />
 </div>
