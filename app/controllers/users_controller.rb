@@ -90,7 +90,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    session[:otp_code] = '1234'
+    Rails.logger.info('I AM IN USERS CREATE')
+    Rails.logger.info('I AM IN USERS CREATE')
+    Rails.logger.info('I AM IN USERS CREATE')
+    # session[:otp_code] = '1234'
     @user = User.new(user_params)
 
     if params[:user][:password].blank?
@@ -98,7 +101,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
 
-    if @user.save
+    if @user.save!
       redirect_to users_path
     else
       render 'new'

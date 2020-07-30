@@ -3,14 +3,15 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, controllers: { sessions: "users/sessions" }
 
+  # resources :users
   resources :logins
 
-  resources :users do
-    member do
-      post :enable_multi_factor_authentication, to: 'users/multi_factor_authentication/multi_factor_authentication#verify_enable'
-      # post :disable_multi_factor_authentication, to: 'users/multi_factor_authentication#verify_disabled'
-    end
-  end
+  # resources :users do
+  #   member do
+  #     post :enable_multi_factor_authentication, to: 'users/multi_factor_authentication/multi_factor_authentication#verify_enable'
+  #     # post :disable_multi_factor_authentication, to: 'users/multi_factor_authentication#verify_disabled'
+  #   end
+  # end
 
   # get 'users/after_login', as: "users_after_login"
 
