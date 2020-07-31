@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :check_for_tfa
 
   def verify_enabled user_id=params[:user_id] || current_user.id
     user=User.find user_id
@@ -14,34 +13,7 @@ class UsersController < ApplicationController
     user.save!
     redirect_to users_path
   end 
-  
-  # def disable_otp user_id=params[:user_id] || current_user.id
-  #   user = User.find user_id
-  #   user.otp_required_for_login = false
-  #   user.save!
-  #   redirect_to users_path
-  # end
 
-  # def allow_tfa user_id=params[:user_id] || current_user.id
-  #   user = User.find user_id
-  #   user.admin_allow_tfa = true
-  #   user.save!
-  #   redirect_to users_path
-  # end
-
-  # def deny_tfa user_id=params[:user_id] || current_user.id
-  #   user = User.find user_id
-  #   user.admin_allow_tfa = false
-  #   user.save!
-  #   redirect_to users_path
-  # end
-
-
-  # def check_for_tfa
-  #   if ! session[:otp_code]
-  #     redirect_to two_factors_new_path
-  #   end
-  # end
   def logins
     @user = User.find(params[:user_id])
     @login = @user.logins.find(params[:id])
@@ -67,11 +39,6 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
 
-    # if @user.update(user_params)
-    #   redirect_to users_path
-    # else
-    #   render 'edit'
-    # end
   end
 
   def update
@@ -91,9 +58,6 @@ class UsersController < ApplicationController
 
   def create
     Rails.logger.info('I AM IN USERS CREATE')
-    Rails.logger.info('I AM IN USERS CREATE')
-    Rails.logger.info('I AM IN USERS CREATE')
-    # session[:otp_code] = '1234'
     @user = User.new(user_params)
 
     if params[:user][:password].blank?
