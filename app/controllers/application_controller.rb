@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!#, except: [:index]
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :check_for_tfa, except: [:devise_]
 
   before_action do |controller|
     Rails.logger.info('CONTROLLER')
@@ -20,19 +19,13 @@ class ApplicationController < ActionController::Base
 
     elsif controller.controller_name == "public"
       
-    elsif controller.controller_name == "two_factors" # ! :devise_controller?
+    elsif controller.controller_name == "two_factors"
     else
       check_for_tfa
     end
   end
 
   protect_from_forgery with: :exception
-
-  # def after_sign_in_path_for(current_user)
-  #   Rails.logger.info('TESTdasddasd')
-  #   Rails.logger.info(params)
-  #   two_factors_new_path(params.to_unsafe_h)
-  # end
 
   protected
 
@@ -45,20 +38,9 @@ class ApplicationController < ActionController::Base
   def check_for_tfa
     if !session[:otp_code]
       Rails.logger.info "IN CHECK FOR TFA"
-      Rails.logger.info "IN CHECK FOR TFA"
-      Rails.logger.info "IN CHECK FOR TFA"
-      Rails.logger.info "IN CHECK FOR TFA"
-      Rails.logger.info "IN CHECK FOR TFA"
-      
       redirect_to two_factors_new_path
-      # return false
 
     else
-      Rails.logger.info "IN ELSE IN ELSE"
-      Rails.logger.info "IN ELSE IN ELSE"
-      Rails.logger.info "IN ELSE IN ELSE"
-      Rails.logger.info "IN ELSE IN ELSE"
-      Rails.logger.info "IN ELSE IN ELSE"
       Rails.logger.info "IN ELSE IN ELSE"
     end
   end
